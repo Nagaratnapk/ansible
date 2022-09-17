@@ -20,10 +20,4 @@
       ansible.builtin.debug:
         msg: Hai from the task2 of play2
 
-- name: Playbook name is Play3 
-  hosts: all  
-  tasks:
-    -  name: Martin D'vloper from tasks
-       ansible.builtin.debug:
-       job: Developer from the task2 of Play3
-      
+
