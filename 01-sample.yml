@@ -20,17 +20,9 @@
       ansible.builtin.debug:
         msg: Hai from the task2 of play2
 
-- martin:
-    name: Martin D'vloper
-    job: Developer
-    skills:
-      - python
-      - perl
-      - pascal
-- tabitha:
-    name: Tabitha Bitumen
-    job: Developer
-    skills:
-      - lisp
-      - fortran
-      - erlang
+- name: Playbook name is Play2 
+  hosts: all  
+  tasks:
+    -  name: Martin D'vloper
+       job: Developer
+      
