@@ -1,6 +1,23 @@
 #ansible
-[prod]
-172.31.5.119
+[frontend]
+frontend.roboshop.internal
 
-[qa]
-172.31.14.177
+[mongodb]
+mongodb.roboshop.internal
+
+[catalogue]
+catalogue.roboshop.internal
+
+[redis]
+redis.roboshop.internal
+
+[user]
+user.roboshop.internal
+
+[cart]
+cart.roboshop.internal
+
+
+
+# roboshop.internal
+# roboshop.internal
