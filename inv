@@ -17,6 +17,9 @@ user.roboshop.internal
 [cart]
 cart.roboshop.internal
 
+[shipping]
+shipping.roboshop.internal
+
 
 
 # roboshop.internal
