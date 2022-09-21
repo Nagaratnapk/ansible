@@ -1,5 +1,6 @@
 - name: Install Maven 
   ansible.builtin.package:
+    hosts: maven
     name: "{{item}}"
     state: present  
   loop: 
