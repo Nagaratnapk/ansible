@@ -1,4 +1,5 @@
 #ansible
+
 [frontend]
 frontend.roboshop.internal
 
@@ -17,8 +18,17 @@ user.roboshop.internal
 [cart]
 cart.roboshop.internal
 
+[mysql]
+mysql.roboshop.internal
+
 [shipping]
 shipping.roboshop.internal
+
+[rabbitmq]
+rabbitmq.roboshop.internal
+
+[payment]
+payment.roboshop.internal
 
 
 
