@@ -46,3 +46,13 @@ Ansible playbooks should always ends with .yml or .yaml. Anything apart from tha
 How do you run the playbooks ?
 
 ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 01-sample.yml
+ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e COMPONENT=catalogue roboshop.yml
+
+
+FORLOOP:
+for i in mongodb catalogue redis cart user mysql shipping frontend; do ansible-playbook -i inv -e ansible_user=centos -e ansible_password=DevOps321 -e COMPONENT=$i roboshop.yml; done
+
+Command to encrypt a string in ansible
+ ansible-vault encrypt_string abc123
+Command to run an encrypted playbook
+ansible-playbook --ask-vault-password 12-secret.yml
