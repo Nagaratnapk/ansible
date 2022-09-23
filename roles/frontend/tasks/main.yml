@@ -31,7 +31,7 @@
     state: started
     enabled: yes 
   
-- name: Configuing system name 
-  ansible.builtin.include_role:
-    name: common 
-    tasks_from: set-hostname
+# - name: Configuing system name 
+#   ansible.builtin.include_role:
+#     name: common 
+#     tasks_from: set-hostname
