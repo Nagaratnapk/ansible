@@ -101,5 +101,3 @@
 # # systemctl start payment
 # # systemctl status payment -l
 # ```
-
-# 1. Now we are good with payment. Update the `PAYMENT` server IP ADDRESS in the FRONTEND Reverse Proxy File
