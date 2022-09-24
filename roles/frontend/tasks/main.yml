@@ -1,7 +1,7 @@
 - name: Installing Nginx
   ansible.builtin.package:
     name: nginx 
-    state: present
+    state: present 
 
 - name:  Download and extract {{COMPONENT}}
   ansible.builtin.include_role:
@@ -20,7 +20,7 @@
     remote_src: yes
 
 - name: Coping proxy config 
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: roboshop.conf 
     dest: /etc/nginx/default.d/roboshop.conf
   notify: Restarting Nginx Service 
