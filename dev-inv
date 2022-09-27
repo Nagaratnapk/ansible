@@ -1,4 +1,6 @@
 #ansible
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
 [frontend]
 frontend-dev.roboshop.internal
 
