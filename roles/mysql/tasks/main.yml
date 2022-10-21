@@ -8,20 +8,24 @@
     name: 
       - mysql-community-server
       - MySQL-python
-    state: present 
+    state: installed 
+
+    # Added as Schema Load Needs PyMySQL
+- name: Installing PyMySQL
+  ansible.builtin.shell: pip3 install PyMySQL
   
-- name: Starting {{COMPONENT}} Service 
-  ansible.builtin.service:
+- name: Starting MySQL Service
+  ansible.builtin.systemd:
     name: mysqld
-    state: started
+    state: restarted
     enabled: yes
 # This has to fetch the password only when the default password is not changed
-
+  
 - name: Check the {{COMPONENT}} password by fetching from the logs 
   community.mysql.mysql_info:
     login_user: root 
     login_password: RoboShop@1 
-  ignore_errors: true  
+  ignore_errors: yes  
   register: mysql_stat 
 
 # This will only be executed only if the above is a failure
@@ -39,6 +43,7 @@
     # This task should only execture if the above task is a failure.
     - name: Changing password 
       ansible.builtin.shell: mysql --connect-expired-password  -uroot -p"{{DEFAULT_ROOT_PASSWORD.stdout}}" < /tmp/rootpassword.sql 
+      ignore_errors: yes
 
 - name: Checking the validate_password plugin 
   ansible.builtin.shell: echo show plugins | mysql -uroot -pRoboShop@1 | grep validate_password 
@@ -57,10 +62,11 @@
     - name: Uninstalling the Plugin 
       ansible.builtin.shell: mysql --connect-expired-password  -uroot -pRoboShop@1 < /tmp/password-validate.sql
 
-- name:  Download and extract {{COMPONENT}}
-  ansible.builtin.include_role:
-    name: common 
-    tasks_from: download-and-extract   
+- name: Download and extract {{COMPONENT}}
+  ansible.builtin.unarchive:
+    src: https://github.com/stans-robot-project/{{COMPONENT}}/archive/main.zip
+    dest: /tmp 
+    remote_src: yes
 
 - name: Load the {{COMPONENT}} schema 
   community.mysql.mysql_db:
@@ -70,7 +76,7 @@
     name: all 
     target: /tmp/mysql-main/shipping.sql 
 
-# - name: Configuing system name 
-#   ansible.builtin.include_role:
-#     name: common 
-#     tasks_from: set-hostname
+- name: Configuing system name 
+  ansible.builtin.include_role:
+    name: common 
+    tasks_from: set-hostname
